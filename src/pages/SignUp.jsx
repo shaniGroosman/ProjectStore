@@ -1,36 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { checkUser, addUser } from "../api/userService";
+import { addUser } from "../api/userService";
 
 const SignUp = () => {
     const {
         register,
         handleSubmit,
+        watch,
         formState: { errors },
     } = useForm();
 
     const navigate = useNavigate();
 
+    // מצבים להצגת/הסתרת הסיסמה
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    // פונקציה לטיפול בשליחת הטופס
     const onSubmit = async (data) => {
-        // const userExists = await checkUser(data);
-        
-        // if (userExists) {
-        //     alert("משתמש כבר קיים");
-        //     navigate("/LogIn");
-        // } else {
-            addUser(data)
-                .then((res) => {
-                    alert("משתמש נוסף בהצלחה");
-                    navigate("/LogIn");
-                })
-                .catch((err) => {
-                    console.log(err);
-                    alert(err.response.data.message );
-                });
-        
+        addUser(data)
+            .then(() => {
+                alert("משתמש נוסף בהצלחה");
+                navigate("/LogIn");
+            })
+            .catch((err) => {
+                console.log(err);
+                alert(err.response?.data?.message || "שגיאה בהוספת המשתמש");
+            });
     };
-    
+
+    // צופה בערך של שדה הסיסמה כדי להשוות אותו לאימות הסיסמה
+    const password = watch("password");
+
     return (
         <div style={{ maxWidth: "300px", margin: "auto", textAlign: "center" }}>
             <h2>SignUp</h2>
@@ -58,14 +60,60 @@ const SignUp = () => {
 
                 <div>
                     <label>Password</label>
-                    <input
-                        type="password"
-                        {...register("password", {
-                            required: "Password is required",
-                            minLength: { value: 6, message: "Password must be at least 6 characters" }
-                        })}
-                    />
+                    <div style={{ position: "relative", display: "inline-block" }}>
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            {...register("password", {
+                                required: "Password is required",
+                                minLength: { value: 6, message: "Password must be at least 6 characters" }
+                            })}
+                        />
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            style={{
+                                position: "absolute",
+                                right: "5px",
+                                top: "50%",
+                                transform: "translateY(-50%)",
+                                background: "none",
+                                border: "none",
+                                cursor: "pointer"
+                            }}
+                        >
+                            {showPassword ? "🙈" : "👁️"}
+                        </button>
+                    </div>
                     <p style={{ color: "red" }}>{errors.password?.message}</p>
+                </div>
+
+                <div>
+                    <label>Confirm Password</label>
+                    <div style={{ position: "relative", display: "inline-block" }}>
+                        <input
+                            type={showConfirmPassword ? "text" : "password"}
+                            {...register("confirmPassword", {
+                                required: "Please confirm your password",
+                                validate: (value) => value === password || "Passwords do not match"
+                            })}
+                        />
+                        <button
+                            type="button"
+                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                            style={{
+                                position: "absolute",
+                                right: "5px",
+                                top: "50%",
+                                transform: "translateY(-50%)",
+                                background: "none",
+                                border: "none",
+                                cursor: "pointer"
+                            }}
+                        >
+                            {showConfirmPassword ? "🙈" : "👁️"}
+                        </button>
+                    </div>
+                    <p style={{ color: "red" }}>{errors.confirmPassword?.message}</p>
                 </div>
 
                 <button type="submit">SignUp</button>
