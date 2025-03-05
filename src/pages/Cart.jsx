@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, reduce, remove } from "../features/cartSlice";
+import { Link, Outlet } from "react-router-dom";
 
 const Cart = () => {
     const dispatch = useDispatch();
@@ -18,7 +19,10 @@ const Cart = () => {
                 <ul>
                     {arrCart.map(item => (
                         <li key={item._id}>
-                            {item.name} - {item.qty}
+                            {/* לינק למוצר ספציפי */}
+                            <Link to={`/cart/details/${item._id}`}>
+                                {item.name} - {item.qty}
+                            </Link>
                             <input type="button" value="+" onClick={() => dispatch(addToCart(item))} />
                             <input type="button" value="-" onClick={() => dispatch(reduce(item))} />
                             <input type="button" value="🗑" onClick={() => dispatch(remove(item))} />
@@ -26,7 +30,10 @@ const Cart = () => {
                     ))}
                 </ul>
             )}
+            <Outlet />
+
         </div>
+
     );
 };
 

@@ -9,6 +9,8 @@ import ShowProduct from './pages/ShowProduct';
 import LogIn from './pages/Login';
 import SignUp from './pages/SignUp';
 import AddProduct from './pages/AddProduct';
+import EditProduct from './pages/EditProduct';
+
 function App() {
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
 
@@ -19,15 +21,16 @@ function App() {
         <Route path="/home" element={<ProductList />} >
           <Route path='details/:id' element={<ShowProduct />} />
         </Route>
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/LogIn" element={<LogIn/>} />
-        <Route path="/SignUp" element={<SignUp/>} />
-        <Route path="/AddProduct" element={<AddProduct/>} />
-
+        <Route path="/cart" element={<Cart />} >
+          <Route path='details/:id' element={<ShowProduct />} />
+        </Route>
+        <Route path="/LogIn" element={<LogIn />} />
+        <Route path="/SignUp" element={<SignUp />} />
+        <Route path="/AddProduct" element={<AddProduct />} />
+        <Route path="/edit-product/:id" element={<EditProduct />} />
       </Routes >
-      {isCartOpen && <CartDrawer />
-      }
-          
+      {isCartOpen && <CartDrawer />}
+
 
     </>
   );

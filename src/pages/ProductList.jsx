@@ -1,22 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getAllProduct } from "../api/productServer";
 import Product from "../components/Product";
 import { useNavigate, Link, Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart,openCart } from "../features/cartSlice";
+import { setProducts } from "../features/productSlice"; // נוסיף את הפעולה הזו
+import { addToCart, openCart } from "../features/cartSlice";
 
 const ProductList = () => {
-    const [products, setProducts] = useState([]);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const products = useSelector(state => state.product.arr); // שליפת מוצרים מ-Redux
 
     useEffect(() => {
-        getAllProduct().then(res => {
-            setProducts(res.data);
-        }).catch(err => {
-            alert("לא ניתן להביא את המוצרים: " + err.message);
-        });
-    }, []);
+        getAllProduct()
+            .then(res => {
+                dispatch(setProducts(res.data)); // שמירת המוצרים ב-Redux
+            })
+            .catch(err => {
+                alert("לא ניתן להביא את המוצרים: " + err.message);
+            });
+    }, [dispatch]);
 
     return (
         <>
@@ -29,9 +32,8 @@ const ProductList = () => {
                         </Link>
                         <input type="button" value="+" onClick={() => {
                             dispatch(addToCart(item));
-                            dispatch(openCart())
-                        }
-                        } />
+                            dispatch(openCart());
+                        }} />
                     </li>
                 ))}
             </div>
