@@ -1,9 +1,13 @@
 import axios from "axios";
 
-const baseUrl = "https://nodeproject-i0da.onrender.com/api/product"
+// const baseUrl = "https://nodeproject-i0da.onrender.com/api/product"
+const baseUrl = "http://localhost:4040/api/product"
 
-export const getAllProduct = () => {
-    return axios.get(baseUrl);
+export const getAllProduct = (numPage) => {
+    return axios.get(baseUrl+"?page="+numPage+"&limit=2");
+};
+export const getTotalPages = () => {
+    return axios.get(`${baseUrl}/totalCount?limit=2`);
 };
 
 export const getProductById = (id) => {

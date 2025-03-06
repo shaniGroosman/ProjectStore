@@ -23,15 +23,22 @@ const SignUp = () => {
             .then(() => {
                 alert("משתמש נוסף בהצלחה");
                 navigate("/LogIn");
-                console.log(data);
-
             })
             .catch((err) => {
                 console.log(err);
-                alert(err.response?.data?.message || "שגיאה בהוספת המשתמש");
+                
+                const errorMessage = err.response?.data?.message || "שגיאה בהוספת המשתמש";
+                
+                if (errorMessage.includes("email already exists")) {
+                    if (window.confirm("האימייל הזה כבר רשום. האם לעבור לדף ההתחברות?")) {
+                        navigate("/LogIn");
+                    }
+                } else {
+                    alert(errorMessage);
+                }
             });
     };
-
+    
     // צופה בערך של שדה הסיסמה כדי להשוות אותו לאימות הסיסמה
     const password = watch("password");
 
