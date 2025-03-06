@@ -70,9 +70,14 @@ const cartSlice = createSlice({
         },
         closeCart: (state) => {
             state.isCartOpen = false;
+        },
+        deledeCart: (state) => {
+            state.arr = [];
+            state.sum=0;
+            state.count=0;
         }
     }
 });
 
-export const { remove, reduce, addToCart, updateCartProduct, openCart, closeCart } = cartSlice.actions;
+export const { remove, reduce, addToCart, updateCartProduct, openCart, closeCart ,deledeCart} = cartSlice.actions;
 export default cartSlice.reducer;

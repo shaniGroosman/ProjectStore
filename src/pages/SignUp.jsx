@@ -23,6 +23,8 @@ const SignUp = () => {
             .then(() => {
                 alert("משתמש נוסף בהצלחה");
                 navigate("/LogIn");
+                console.log(data);
+
             })
             .catch((err) => {
                 console.log(err);
@@ -39,8 +41,8 @@ const SignUp = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <label>Username</label>
-                    <input type="text" {...register("username", { required: "Username is required" })} />
-                    <p style={{ color: "red" }}>{errors.username?.message}</p>
+                    <input type="text" {...register("userName", { required: "userName is required" })} />
+                    <p style={{ color: "red" }}>{errors.userName?.message}</p>
                 </div>
 
                 <div>
