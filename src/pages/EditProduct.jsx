@@ -117,6 +117,11 @@ const EditProduct = () => {
                 </div>
 
                 <input type="submit" value="Update Product" />
+                <input type="button" value="reset" onClick={() => {
+                    console.log("hvgjbhknj")
+                    navigate("/home");
+
+                }} />
             </form>
         </div>
     );

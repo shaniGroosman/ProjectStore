@@ -15,7 +15,12 @@ export const getProductById = (id) => {
 };
 
 export const addProduct = (product) => {
-    return axios.post(`${baseUrl}`, product);
+    return axios.post(`${baseUrl}`, product ,{Headers:{
+        authorization:token
+    }
+
+    });
+   
 };
 
 export const update = (id, updateData) => {

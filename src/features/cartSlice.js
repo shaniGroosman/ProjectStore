@@ -75,6 +75,7 @@ const cartSlice = createSlice({
             state.arr = [];
             state.sum=0;
             state.count=0;
+            localStorage.removeItem("cart");
         }
     }
 });

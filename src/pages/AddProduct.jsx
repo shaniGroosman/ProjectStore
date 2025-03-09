@@ -17,7 +17,6 @@ const AddProduct = () => {
     const navigate = useNavigate(); // לנווט לעמוד הבית אחרי הוספת מוצר
 
     const onSubmit = async (data) => {
-        // הפיכת המרכיבים והקטגוריות למערכים
         const formattedData = {
             ...data,
             ingredient: Array.isArray(data.ingredient) ? data.ingredient : [data.ingredient]
