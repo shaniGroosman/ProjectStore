@@ -1,0 +1,197 @@
+/* עיצוב ה-NAVBAR */
+.navbar {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #fff;
+    padding: 10px 10px; /* ריווח קטן יותר */
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+/* עיצוב הלוגו */
+.navbar img {
+    height: 60px; /* גודל קטן יותר */
+}
+
+/* תפריט הקישורים */
+.nav-links {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 50px; /* ריווח קטן יותר */
+}
+
+.nav-links li {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0px; /* צמצום הרווח בין האייקון לטקסט */
+}
+
+.tooltip a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 0px; /* צמצום הרווח בין האייקון לטקסט */
+}
+
+.nav-links a:hover {
+    color: rgb(154, 126, 79);
+}
+
+/* קופסת הפרופיל */
+/* קופסת הפרופיל */
+.profile-container {
+    position: relative; /* מאפשר מיקום יחסי */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* מוסיף רווח קטן בין האייקון לכיתוב "שלום" */
+}
+
+/* טקסט קבלת פנים (שלום) */
+.welcome-text {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+/* אייקון הפרופיל */
+.profile-picture {
+    width: 55px; /* הגדלת האייקון */
+    height: 55px;
+    border-radius: 50%;
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    border: 2px solid black;
+    margin-right: 50px;
+    font-size: 20px;
+}
+
+/* תיבת המידע (Tooltip) */
+.tooltip {
+    position: absolute;
+    top: 50px; /* ממקם את התיבה מתחת לפרופיל */
+    left: 50%;
+    transform: translateX(-50%); /* ממרכז את ה-Tooltip */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px; /* ריווח פנימי גדול יותר */
+    width: 220px; /* הגדלת רוחב התיבה */
+    z-index: 10;
+    color: #333;
+    text-align: center;
+    line-height: 3.2; 
+    font-size: 18px;
+    direction: rtl;
+
+}
+
+.tooltip p {
+    margin: 0;
+    font-weight: bold;
+    color: #333;
+}
+
+.tooltip ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+}
+
+.tooltip li {
+    margin-bottom: 5px;
+}
+
+.tooltip a {
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.tooltip a:hover {
+    color: rgb(154, 126, 79);
+}
+
+/* כפתור התנתקות */
+.logout-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.logout-button:hover {
+    background-color: darkred;
+}
+/* עיצוב תמונת העגלה */
+.cart-image {
+    /* width: 40px; התאמת גודל */
+    height: auto;
+}
+
+/* קונטיינר של העגלה */
+.cart-icon {
+    position: relative;
+    /* margin-left: 2px;  */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* עיגול עם כמות המוצרים */
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+

@@ -1,0 +1,105 @@
+.order-list-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: right;
+    direction: rtl;
+}
+
+.order-list-container h2 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+/* עיצוב ה-Accordion */
+.order-accordion {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.order-summary-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.order-number {
+    flex: 1;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.order-date {
+    flex: 1;
+    text-align: left;
+    font-size: 16px;
+}
+
+/* עיצוב פרטי המוצרים */
+.order-products {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.order-product {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+.order-product img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 5px;
+    background: white;
+    margin-left: 10px;
+}
+
+.product-name {
+    flex: 2;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.product-details {
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+}
+
+.product-price {
+    margin-right: 20px;
+    color: #000;
+    font-weight: bold;
+}
+
+/* קו הפרדה */
+.order-divider {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+}
+
+/* סיכום הזמנה */
+.order-summary {
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* אם אין הזמנות */
+.no-orders {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+}

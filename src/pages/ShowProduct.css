@@ -1,0 +1,81 @@
+/* עיצוב רקע כללי */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* קופסה עם התוכן */
+.product-container {
+    display: flex;
+    /* שימוש ב-flex כדי לסדר תמונה בצד ימין וטקסט בצד שמאל */
+    flex-direction: row-reverse;
+    /* הופך את סדר הפריטים - התמונה תהיה בצד ימין */
+    align-items: center;
+    background: white;
+    width: 70%;
+    height: 70%;
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 300px;
+    position: relative;
+    margin-top: 5%;
+}
+
+/* עיצוב תמונת המוצר */
+.product-image {
+    width: 50%;
+    /* גודל אחיד */
+    height: 300px;
+    object-fit: contain;
+    /* שהתמונה לא תתעוות */
+    margin-left: 20px;
+    /* רווח מהתוכן */
+}
+
+/* עיצוב החלק השמאלי עם הפרטים */
+.product-details {
+    flex: 1;
+    /* שהחלק הזה יתפוס את כל השטח שנותר */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* רווח בין האלמנטים */
+}
+
+/* כפתור סגירה */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgb(0, 0, 0);
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* עיצוב כפתורים */
+button,
+input[type="button"] {
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 5px;
+    align-self: center;
+}
+
+.input-plus-pro {
+    width: 40px;
+    height: 40px;
+}

@@ -1,0 +1,55 @@
+.footer {
+  width: 100vw; /* 📌 מבטיח שהפוטר יתפרס על כל רוחב הדף */
+  position: relative; /* מבטיח שהוא ישתלב נכון עם שאר האלמנטים */
+  left: 0; 
+  right: 0;
+  padding-top: 80px; /* ✅ מגדיל את הרווח העליון */
+  padding-bottom: 50px; /* ✅ מגדיל את הרווח התחתון */
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  max-width: 1200px; /* ✅ מגדיל את הרוחב */
+  margin: auto;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px; /* ✅ מרחיב את העמודות */
+  padding: 10px; 
+  text-align: right; /* 📌 מיישר את כל הטקסטים לימין */
+}
+
+.footer-column h3 {
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  font-size: 20px; /* ✅ מגדיל את הכותרות */
+}
+
+.footer-column p {
+  margin: 10px 0;
+  font-size: 16px; /* ✅ מגדיל את הטקסט */
+}
+
+/* ✅ בטלפונים, מסדר את הטקסט יפה */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+.logo-footer{
+  width: 50%;
+}
+.icon-gif {
+  width: 25px; /* 📌 גודל ה-GIF */
+  height: 25px;
+  margin-left: 20px; /* 📌 יוצר רווח קטן בין ה-GIF לטקסט */
+  vertical-align: middle; /* 📌 מיישר את ה-GIF עם הטקסט */
+}

@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const baseUrl="https://nodeproject-i0da.onrender.com/api/user"
-const baseUrl = "http://localhost:4040/api/user"
+const baseUrl="https://nodeproject-i0da.onrender.com/api/user"
+// const baseUrl = "http://localhost:4040/api/user"
 
 
 export const checkUser = (data) => {

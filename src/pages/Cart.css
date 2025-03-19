@@ -1,0 +1,151 @@
+/* ביטול גלילה מיותרת */
+body {
+    overflow-x: hidden; /* מוודא שאין גלילה לרוחב */
+    margin: 0;
+    padding: 0;
+    margin-top: 60px;
+}
+
+/* סגנון כללי לעמוד העגלה */
+.cart-page-container {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 10px;
+    background: #fff;
+    text-align: center;
+    color: black;
+    direction: rtl;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden; /* ביטול גלילה לרוחב */
+}
+
+/* כותרת */
+.cart-page-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* סיכום הסל */
+.cart-summary-container {
+    font-size: 24px; /* הגדלת הטקסט */
+    font-weight: bold;
+    color: red;
+    margin-bottom: 15px;
+}
+
+/* רשימת מוצרים */
+.cart-items-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 80%;
+}
+
+/* עיצוב כל מוצר */
+.cart-item-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* תמונת המוצר - הקטנתי את הגודל */
+.cart-item-image {
+    width: 10%;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+/* שם המוצר */
+.cart-item-title {
+    font-size: 22px; /* הקטנתי קצת את הגופן */
+    font-weight: bold;
+    flex: 1;
+    text-align: center;
+}
+.cart-item-name{
+    color: black !important;
+     /* מוודא שהשם שחור */
+
+}
+
+/* מחיר ליחידה */
+.cart-item-unit-price {
+    font-size: 22px;
+    font-weight: bold;
+    flex: 1;
+    text-align: center;
+}
+
+/* כמות עם כפתורים */
+.cart-item-quantity {
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 5px; /* הקטנתי את הרווחים */
+}
+
+.cart-item-quantity button {
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    background: none;
+    color: black;
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center;
+    transition: 0.3s;
+    outline: none; /* מסיר את המסגרת שמופיעה בעת לחיצה */
+}
+
+.cart-item-quantity button:focus {
+    outline: none; /* מסיר מסגרת פוקוס */
+    box-shadow: none; /* מסיר הדגשה נוספת אם קיימת */
+}
+.cart-item-quantity button:hover {
+    transform: scale(1.1);
+}
+
+/* מחיר כולל למוצר */
+.cart-item-total-price {
+    font-size: 22px;
+    font-weight: bold;
+    flex: 1;
+    text-align: center;
+}
+
+/* כפתור מחיקה */
+.cart-item-remove-btn {
+    color: black !important;
+    transition: 0.3s;
+}
+
+.cart-item-remove-btn:hover {
+    color: gray !important;
+}
+
+/* כפתור סיום הזמנה */
+.cart-checkout-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 22px;
+    font-weight: bold;
+    background: none;
+    color: black;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.cart-checkout-btn:hover {
+    transform: scale(1.1);
+}

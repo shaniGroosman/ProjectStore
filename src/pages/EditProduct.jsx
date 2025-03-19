@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { getProductById, update } from "../api/productServer";
-import { updateCartProduct } from "../features/cartSlice";
+import {
+    TextField, Button, Select, MenuItem, InputLabel,
+    FormControl, Typography, Box, Stack
+} from "@mui/material";
 
+const categories = ["תוספות", "סלטים", "סנדוויצים"]; // קטגוריות לדוגמה
 const ingredientsList = ["Sugar", "Salt", "Flour", "Butter", "Eggs", "Milk", "Chocolate"];
 
 const EditProduct = () => {
+    const user = useSelector(state => state.user.currentUser);
     const { id } = useParams();
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
-    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+
+    const { register, handleSubmit, formState: { errors }, reset, watch, setValue } = useForm({
         defaultValues: {
             name: "",
             description: "",
             img: "",
             price: "",
             date: "",
+            category: "",
             ingredient: []
         }
     });
@@ -41,6 +47,10 @@ const EditProduct = () => {
                     date: response.data.date ? response.data.date.split("T")[0] : "",
                     ingredient: response.data.ingredient || []
                 });
+
+                // **עדכון הקטגוריה לברירת המחדל**
+                setValue("category", response.data.category || "");
+
                 setLoading(false);
             } catch {
                 alert("Failed to load product data");
@@ -49,7 +59,7 @@ const EditProduct = () => {
         };
 
         fetchProduct();
-    }, [id, reset, navigate]);
+    }, [id, reset, navigate, setValue]);
 
     const onSubmit = async (data) => {
         if (!id) {
@@ -63,67 +73,94 @@ const EditProduct = () => {
         };
 
         try {
-            await update(id, updatedData);
-            localStorage.setItem(`product_${id}`, JSON.stringify(updatedData));
-            dispatch(updateCartProduct({ id, updatedData }));
+            console.log("🔵 Sending update request...", updatedData);
+            await update(id, updatedData, user?.token);
             alert("Product updated successfully!");
             navigate("/home");
-        } catch {
+        } catch (error) {
+            console.error("🚨 Error updating product:", error);
             alert("Error updating product");
         }
     };
 
     if (loading) return <p>Loading product details...</p>;
 
+    const watchIngredients = watch("ingredient") || [];
+    const watchCategory = watch("category"); // **הוספנו מעקב אחר הקטגוריה**
+
     return (
-        <div style={{ maxWidth: "400px", margin: "auto", textAlign: "center" }}>
-            <h2>Edit Product</h2>
-            <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                <div>
-                    <label>Product Name</label>
-                    <input type="text" {...register("name", { required: "Product Name is required" })} />
-                    <p style={{ color: "red" }}>{errors.name?.message}</p>
-                </div>
+        <Box sx={{
+            maxWidth: "500px",
+            margin: "auto",
+            padding: "20px",
+            boxShadow: 3,
+            borderRadius: "8px",
+            backgroundColor: "#f9f9f9",
+            textAlign: "center",
+            mt: 5,
+        }}>
+            <Typography variant="h4" sx={{ mb: 2, color: "#333" }}>
+                עריכת מוצר
+            </Typography>
 
-                <div>
-                    <label>Description</label>
-                    <textarea {...register("description")}></textarea>
-                </div>
+            <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+                <TextField label="שם המוצר" {...register("name", { required: "חובה להזין שם מוצר" })}
+                    error={!!errors.name} helperText={errors.name?.message} />
 
-                <div>
-                    <label>Image URL</label>
-                    <input type="text" {...register("img")} />
-                </div>
+                <TextField label="תיאור המוצר" multiline rows={3} {...register("description")} />
 
-                <div>
-                    <label>Price</label>
-                    <input type="number" step="0.01" {...register("price")} />
-                </div>
+                <TextField label="קישור לתמונה" {...register("img")} />
 
-                <div>
-                    <label>Date</label>
-                    <input type="date" {...register("date")} />
-                </div>
+                <TextField label="מחיר" type="number" {...register("price")} />
 
-                <div>
-                    <label>Ingredients (Select multiple)</label>
-                    <select {...register("ingredient")} multiple>
-                        {ingredientsList.map((ing) => (
-                            <option key={ing} value={ing}>
-                                {ing}
-                            </option>
+                <TextField label="תאריך" type="date" InputLabelProps={{ shrink: true }} {...register("date")} />
+
+                {/* בחירת קטגוריה */}
+                <FormControl fullWidth>
+                    <InputLabel>קטגוריה</InputLabel>
+                    <Select
+                        {...register("category", { required: "חובה לבחור קטגוריה" })}
+                        value={watchCategory || ""}
+                        onChange={(e) => setValue("category", e.target.value)}
+                        error={!!errors.category}
+                    >
+                        {categories.map((cat) => (
+                            <MenuItem key={cat} value={cat}>{cat}</MenuItem>
                         ))}
-                    </select>
-                </div>
+                    </Select>
+                    {errors.category && <Typography color="error">{errors.category.message}</Typography>}
+                </FormControl>
 
-                <input type="submit" value="Update Product" />
-                <input type="button" value="reset" onClick={() => {
-                    console.log("hvgjbhknj")
-                    navigate("/home");
+                {/* בחירת מרכיבים */}
+                <FormControl fullWidth>
+                    <InputLabel>מרכיבים</InputLabel>
+                    <Select
+                        multiple
+                        value={Array.isArray(watchIngredients) ? watchIngredients : []}
+                        onChange={(e) => setValue("ingredient", e.target.value)}
+                    >
+                        {ingredientsList.map((ing) => (
+                            <MenuItem key={ing} value={ing}>{ing}</MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
 
-                }} />
+                {/* כפתורי שליחה וביטול בשורה אחת */}
+                <Stack direction="row" spacing={2} justifyContent="center">
+                    <Button variant="contained"
+                        sx={{ backgroundColor: "black", color: "white", "&:hover": { backgroundColor: "#333" } }}
+                        type="submit">
+                        עדכן מוצר
+                    </Button>
+
+                    <Button variant="contained"
+                        sx={{ backgroundColor: "black", color: "white", "&:hover": { backgroundColor: "#333" } }}
+                        onClick={() => navigate("/home")}>
+                        ביטול
+                    </Button>
+                </Stack>
             </form>
-        </div>
+        </Box>
     );
 };
 

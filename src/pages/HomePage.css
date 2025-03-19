@@ -1,0 +1,149 @@
+.img-banner-home {
+    width: 100%;
+    /* height: 90%; */
+}
+
+.img-banner-about {
+    width: 80%;
+    margin: 100px auto 0;
+    /* מיישר לאמצע אופקית */
+    display: block;
+    margin-bottom: 10px;
+
+    /* הופך את האלמנט לבלוק כדי שה-margin:auto יעבוד */
+}
+
+h1 {
+    text-align: center;
+    margin-top: 5%;
+    /* מיישר את הטקסט לאמצע */
+    margin-bottom: 50px;
+    /* מוסיף רווח מעל ומתחת */
+    font-size: 50px;
+    /* מגדיל את הגופן */
+    font-weight: bolder;
+    /* הופך לטקסט עבה יותר */
+    color: #000000;
+    /* צבע כהה לכותרת */
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    /* מיישר את התמונות למרכז */
+    align-items: center;
+    /* מיישר גם לגובה אם צריך */
+    gap: 15px;
+    /* ריווח בין התמונות */
+    margin: 20px auto;
+    /* מיישר את הקונטיינר כולו */
+    width: fit-content;
+    /* רוחב שיתאים בדיוק לכמות התמונות */
+}
+
+.img-banner {
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    display: block;
+    margin-bottom: 100px;
+    /* מונע בעיות יישור */
+}
+
+.store-button {
+    background-color: rgb(0, 0, 0);
+    /* רקע שחור */
+    color: white !important;
+    /* טקסט לבן */
+    font-size: 30px  !important;
+    /* גודל טקסט נוח */
+    font-weight: bold;
+    width: 300px;
+    height: 70px;
+    /* הופך את הכיתוב לעבה יותר */
+    padding: 40px 50px;
+    /* ריווח פנימי */
+    border: none;
+    /* מסיר מסגרת */
+    cursor: pointer;
+    /* מסמן שהכפתור לחיץ */
+    display: block;
+    /* מאפשר שימוש ב-margin:auto */
+    margin: 40px auto;
+    /* ממקם באמצע הדף */
+    text-align: center;
+    /* מיושר טקסט באמצע */
+    /* transition: 0.3s ease-in-out; אנימציה חלקה */
+}
+
+.store-button:hover {
+    background-color: #333;
+    /* רקע אפור כהה בעת מעבר עכבר */
+}
+.rotating-circle {
+    width: 250px;
+    height: 250px;
+    display: block;
+    margin: auto;
+    animation: rotate 9s linear infinite;
+  }
+  
+  .circle-text {
+    font-size: 12px;
+    fill: black; /* צבע הטקסט */
+    font-weight: bold;
+    letter-spacing: 2px; /* ריווח בין האותיות */
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .images-container {
+    display: flex;
+    justify-content: space-between; /* מרווח שווה בין האלמנטים */
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    position: relative; /* מאפשר שכבות */
+  }
+  
+  .image-box {
+    flex: 1; /* כל תמונה תיקח חצי מסך */
+    text-align: center;
+    position: relative;
+  }
+  
+  .img-banner-circle {
+    width: 100%;
+    max-width: 500px; /* ✅ מגדיל את התמונה */
+    height: auto;
+  }
+  
+  /* ✅ מעביר את העיגול מאחורי התמונה */
+  .circle-container {
+    position: absolute;
+    top: 30%;
+    left: 60%;
+    transform: translate(-50%, -50%) scale(1.3); /* ✅ מגדיל את העיגול */
+    z-index: -1; /* מעביר את העיגול לשכבה אחורית */
+  }
+  
+  .rotating-circle {
+    width: 280px; /* ✅ מגדיל את גודל העיגול */
+    height: 280px;
+  }
+  
+  .circle-text {
+    font-size: 8px; /* ✅ מגדיל את הכתב */
+    fill: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
